@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5CC85080-4DED-49C6-9AA3-F60AF3E720A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VerdeBordo.API", "src\VerdeBordo.API\VerdeBordo.API.csproj", "{133C8640-B403-4298-8C78-9F18E67C3557}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CDFFCDFC-50B0-410E-A3FA-A6014257CC38}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VerdeBordo.API.Tests", "test\VerdeBordo.API.Tests\VerdeBordo.API.Tests.csproj", "{90DAA332-5C77-4ADD-A204-76D650DA1DC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerdeBordo.Domain", "src\VerdeBordo.Domain\VerdeBordo.Domain.csproj", "{DE136EB5-F597-4528-A1AD-DBE1A619FF82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerdeBordo.Infra", "src\VerdeBordo.Infra\VerdeBordo.Infra.csproj", "{AC9DED53-E96C-446A-B020-06D6FBC7CFFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{133C8640-B403-4298-8C78-9F18E67C3557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{133C8640-B403-4298-8C78-9F18E67C3557}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{133C8640-B403-4298-8C78-9F18E67C3557}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{133C8640-B403-4298-8C78-9F18E67C3557}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90DAA332-5C77-4ADD-A204-76D650DA1DC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90DAA332-5C77-4ADD-A204-76D650DA1DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90DAA332-5C77-4ADD-A204-76D650DA1DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90DAA332-5C77-4ADD-A204-76D650DA1DC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE136EB5-F597-4528-A1AD-DBE1A619FF82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE136EB5-F597-4528-A1AD-DBE1A619FF82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE136EB5-F597-4528-A1AD-DBE1A619FF82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE136EB5-F597-4528-A1AD-DBE1A619FF82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC9DED53-E96C-446A-B020-06D6FBC7CFFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC9DED53-E96C-446A-B020-06D6FBC7CFFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC9DED53-E96C-446A-B020-06D6FBC7CFFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC9DED53-E96C-446A-B020-06D6FBC7CFFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{133C8640-B403-4298-8C78-9F18E67C3557} = {5CC85080-4DED-49C6-9AA3-F60AF3E720A0}
+		{90DAA332-5C77-4ADD-A204-76D650DA1DC3} = {CDFFCDFC-50B0-410E-A3FA-A6014257CC38}
+		{DE136EB5-F597-4528-A1AD-DBE1A619FF82} = {5CC85080-4DED-49C6-9AA3-F60AF3E720A0}
+		{AC9DED53-E96C-446A-B020-06D6FBC7CFFE} = {5CC85080-4DED-49C6-9AA3-F60AF3E720A0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF10D876-A7CD-4BEB-9877-3F34D542D4D0}
+	EndGlobalSection
+EndGlobal
