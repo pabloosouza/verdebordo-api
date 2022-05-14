@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using VerdeBordo.Domain.Entities;
-using VerdeBordo.Infra.Persistence;
+using VerdeBordo.API.Models;
+using VerdeBordo.API.Services.Interfaces;
 
 namespace VerdeBordo.API.Controllers
 {
@@ -8,28 +8,37 @@ namespace VerdeBordo.API.Controllers
     [Route("api/v1/customers")]
     public class CustomerController : ControllerBase
     {
-        private readonly VerdeBordoContext _context;
+        #region Properties
 
-        public CustomerController(VerdeBordoContext context)
+        private readonly ICustomerService _customerService;
+
+        #endregion
+
+        #region Constructor
+
+        public CustomerController(ICustomerService custumerService)
         {
-            _context = context;
+            _customerService = custumerService;
         }
+
+        #endregion
+
+        #region Methods
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(_context.Customers);
+            return Ok(_customerService.GetAll());
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
-            var customer = _context
-                .Customers.SingleOrDefault(x => x.Id == id);
+            var customer = _customerService.GetById(id);
 
             if (customer is null)
             {
-                return NotFound();
+                return NotFound("Cliente não encontrado.");
             }
 
             return Ok(customer);
@@ -38,31 +47,29 @@ namespace VerdeBordo.API.Controllers
         [HttpPost]
         public IActionResult AddCustomer(AddCustomerInputModel addCustomerInputModel)
         {
-            var customer = new Customer(addCustomerInputModel.Name, addCustomerInputModel.Contact, addCustomerInputModel.Address);
-
-            _context.Customers.Add(customer);
+            var response = _customerService.Add(addCustomerInputModel);
 
             return CreatedAtAction(
                 "GetById",
-                new { customer.Id },
-                customer
+                new { response.Id },
+                response
                 );
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            var customer = _context
-                .Customers.SingleOrDefault(x => x.Id == id);
+            var delete = _customerService.Delete(id);
 
-            if (customer is null)
+            if (!delete)
             {
-                return NotFound();
+                return NotFound("Cliente não encontrado.");
             }
-
-            customer.Delete();
 
             return NoContent();
         }
+
+        #endregion
+
     }
 }

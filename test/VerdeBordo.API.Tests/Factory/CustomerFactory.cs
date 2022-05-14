@@ -1,4 +1,8 @@
 ﻿using Bogus;
+using System;
+using System.Collections.Generic;
+using VerdeBordo.API.Models;
+using VerdeBordo.API.Services.Responses;
 using VerdeBordo.Domain.Entities;
 
 namespace VerdeBordo.API.Tests.Factory
@@ -25,10 +29,27 @@ namespace VerdeBordo.API.Tests.Factory
             new Faker<AddCustomerInputModel>()
             .CustomInstantiator(x =>
             {
-                return new AddCustomerInputModel
+                return new AddCustomerInputModel(
+                    x.Person.FirstName,
+                    x.Phone.ToString()
+                    );
+            });
+
+        #endregion
+
+        #region Responses
+
+        public static Faker<GetCustomerResponse> GetCustomerResponse =>
+            new Faker<GetCustomerResponse>()
+            .CustomInstantiator(x =>
+            {
+                return new GetCustomerResponse
                 {
-                    Name = x.Person.FirstName,
-                    Contact = x.Phone.ToString()
+                    Id = Guid.NewGuid(),
+                    Name = x.Person.FullName,
+                    Contact = x.Phone.ToString(),
+                    Addresses = new List<Address>(),
+                    Orders = new List<Embroidery>()
                 };
             });
 

@@ -5,11 +5,21 @@ namespace VerdeBordo.Infra.Persistence
 {
     public class VerdeBordoContext : DbContext
     {
+        #region DbSets
+
         public DbSet<Customer> Customers { get; set; }
+
+        #endregion
+
+        #region Constructor
 
         public VerdeBordoContext(DbContextOptions<VerdeBordoContext> dbContextOptions)
             : base(dbContextOptions)
         { }
+
+        #endregion
+
+        #region Methods
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,9 +29,17 @@ namespace VerdeBordo.Infra.Persistence
 
                 c.HasMany(c => c.Orders)
                     .WithOne()
-                    .HasForeignKey(e => e.ClientId)
+                    .HasForeignKey(e => e.CustomerId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                c.HasMany(c => c.Addresses)
+                    .WithOne()
+                    .HasForeignKey(a => a.CustomerId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
         }
+
+        #endregion
+
     }
 }
