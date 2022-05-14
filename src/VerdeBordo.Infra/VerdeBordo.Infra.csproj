@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VerdeBordo.Domain\VerdeBordo.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
