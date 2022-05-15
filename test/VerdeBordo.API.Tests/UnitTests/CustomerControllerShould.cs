@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System;
 using VerdeBordo.API.Controllers;
-using VerdeBordo.API.Models;
+using VerdeBordo.API.InputModels;
 using VerdeBordo.API.Services.Interfaces;
-using VerdeBordo.API.Services.Responses;
+using VerdeBordo.API.Services.ViewModels;
 using VerdeBordo.API.Tests.Factory;
 using VerdeBordo.Domain.Entities;
 using Xunit;
@@ -22,9 +21,8 @@ namespace VerdeBordo.API.Tests
         private readonly AddCustomerInputModel addCustomerInputModel;
         private readonly CustomerViewModel customerReponse;
         private readonly Customer customer;
-        private readonly AddOrderInputModel addOrderInputModel;
-        private readonly OrderViewModel orderViewModel;
-        private readonly Embroidery embroidery;
+        private readonly AddAddressInputModel addAddressInputModel;
+        private readonly AddressViewModel addressViewModel;
 
         #endregion
 
@@ -38,8 +36,9 @@ namespace VerdeBordo.API.Tests
             addCustomerInputModel = CustomerFactory.AddCustomerInputModel.Generate();
             customerReponse = CustomerFactory.GetCustomerResponse.Generate();
             customer = CustomerFactory.Customer.Generate();
-            orderViewModel = OrderFactory.OrderViewModel.Generate();
-            addOrderInputModel = OrderFactory.AddOrderInputModel.Generate(); 
+
+            addAddressInputModel = AddressFactory.AddAddressInputModel.Generate();
+            addressViewModel = AddressFactory.AddressViewModel.Generate();
         }
 
         #endregion
@@ -61,8 +60,6 @@ namespace VerdeBordo.API.Tests
         [Fact]
         public void AddCustomer_WhenValidInputModel()
         {
-            var addCustomerInputModel = CustomerFactory.AddCustomerInputModel.Generate();
-
             _customerService.Setup(x => x.Add(addCustomerInputModel))
                 .Returns(customerReponse);
 
@@ -70,12 +67,13 @@ namespace VerdeBordo.API.Tests
 
             result.Should().BeOfType<CreatedAtActionResult>();
         }
+
         #endregion
 
         #region GetById
 
         [Fact]
-        public void ReturnCustomer_WhenValidId()
+        public void ReturnOk_WhenValidId()
         {
             _customerService.Setup(x => x.GetById(customer.Id))
                 .Returns(customerReponse);
@@ -118,19 +116,32 @@ namespace VerdeBordo.API.Tests
 
         #endregion
 
-        #region Order
+        #region AddAddress
 
         [Fact]
-        public void CreateOrder_WhenValidCustomerInformed()
+        public void AddAddress_WhenValidAddress()
         {
-            var customerId = Guid.NewGuid();
+            _customerService.Setup(x => x.AddAddress(customer.Id, addAddressInputModel))
+                .Returns(addressViewModel);
 
-            _customerService.Setup(x => x.Order(customerId, addOrderInputModel))
-                .Returns(orderViewModel);
+            var result = _customerController.AddAddress(customer.Id, addAddressInputModel);
 
-            var result = _customerController.Order(customerId, addOrderInputModel);
-            
             result.Should().BeOfType<CreatedAtActionResult>();
+        }
+
+        #endregion
+
+        #region GetAddressById
+
+        [Fact]
+        public void GetAddressById_WhenValidId()
+        {
+            _customerService.Setup(x => x.GetAddressById(addressViewModel.Id))
+                .Returns(addressViewModel);
+
+            var result = _customerController.GetAddressById(addressViewModel.Id);
+
+            result.Should().BeOfType<OkObjectResult>();
         }
 
         #endregion

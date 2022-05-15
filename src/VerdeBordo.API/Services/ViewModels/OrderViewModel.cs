@@ -1,12 +1,11 @@
 ﻿using VerdeBordo.Domain.Entities;
 using VerdeBordo.Domain.Entities.Enums;
 
-namespace VerdeBordo.API.Services.Responses
+namespace VerdeBordo.API.Services.ViewModels
 {
     public class OrderViewModel
     {
         public Guid Id { get; set; }
-        public Guid CustomerId { get; set; }
         public int Size { get; set; }
         public float Price { get; set; }
         public float PaidAmount { get; set; }
@@ -20,7 +19,6 @@ namespace VerdeBordo.API.Services.Responses
             return new OrderViewModel
             {
                 Id = embroidery.Id,
-                CustomerId = embroidery.CustomerId,
                 Size = embroidery.Size,
                 Price = embroidery.Price,
                 PaidAmount = embroidery.PaidAmount,

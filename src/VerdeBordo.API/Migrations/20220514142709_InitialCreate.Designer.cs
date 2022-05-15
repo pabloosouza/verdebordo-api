@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VerdeBordo.Infra.Persistence;
 
@@ -11,9 +12,10 @@ using VerdeBordo.Infra.Persistence;
 namespace VerdeBordo.API.Migrations
 {
     [DbContext(typeof(VerdeBordoContext))]
-    partial class VerdeBordoContextModelSnapshot : ModelSnapshot
+    [Migration("20220514142709_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +34,7 @@ namespace VerdeBordo.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("CustomerId")
+                    b.Property<Guid?>("CustomerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Number")
@@ -51,7 +53,7 @@ namespace VerdeBordo.API.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("VerdeBordo.Domain.Entities.Customer", b =>
@@ -82,10 +84,10 @@ namespace VerdeBordo.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CustomerId")
+                    b.Property<Guid>("ClientId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("DeliveredIn")
+                    b.Property<DateTime>("DeliveredIn")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("OrderedIn")
@@ -108,25 +110,23 @@ namespace VerdeBordo.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("ClientId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Embroidery");
                 });
 
             modelBuilder.Entity("VerdeBordo.Domain.Entities.Address", b =>
                 {
                     b.HasOne("VerdeBordo.Domain.Entities.Customer", null)
                         .WithMany("Addresses")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
                 });
 
             modelBuilder.Entity("VerdeBordo.Domain.Entities.Embroidery", b =>
                 {
                     b.HasOne("VerdeBordo.Domain.Entities.Customer", null)
                         .WithMany("Orders")
-                        .HasForeignKey("CustomerId")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

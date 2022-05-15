@@ -37,13 +37,15 @@ namespace VerdeBordo.Infra.Persistence.Repositories
 
         public List<Customer> GetAll()
         {
+#pragma warning disable CS8604 // Possible null reference argument.
             return _context.Customers.ToList();
+#pragma warning restore CS8604 // Possible null reference argument.
         }
 
         public Customer? GetById(Guid id)
         {
             return _context
-                .Customers
+                .Customers?
                 .Include(c => c.Addresses)
                 .Include(c => c.Orders)
                 .SingleOrDefault(x => x.Id == id);
@@ -53,7 +55,7 @@ namespace VerdeBordo.Infra.Persistence.Repositories
         public void Order(Embroidery embroidery)
         {
 
-            _context.Orders.Add(embroidery);
+            _context.Orders?.Add(embroidery);
 
             _context.SaveChanges();
         }

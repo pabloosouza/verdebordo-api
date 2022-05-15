@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using VerdeBordo.API.Models;
+using VerdeBordo.API.InputModels;
 using VerdeBordo.API.Services.Interfaces;
 
 namespace VerdeBordo.API.Controllers
@@ -45,8 +45,8 @@ namespace VerdeBordo.API.Controllers
             }
 
             return CreatedAtAction(
-                "GetOrderById",
-                order.Id,
+                "GetById",
+                new { order.Id },
                 order
                 );
         }

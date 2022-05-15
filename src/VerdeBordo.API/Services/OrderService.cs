@@ -1,6 +1,6 @@
-﻿using VerdeBordo.API.Models;
+﻿using VerdeBordo.API.InputModels;
 using VerdeBordo.API.Services.Interfaces;
-using VerdeBordo.API.Services.Responses;
+using VerdeBordo.API.Services.ViewModels;
 using VerdeBordo.Domain.Entities;
 using VerdeBordo.Infra.Persistence.Repositories.Interfaces;
 
@@ -31,7 +31,7 @@ namespace VerdeBordo.API.Services
             return response;
         }
 
-        public OrderViewModel GetById(Guid id)
+        public OrderViewModel? GetById(Guid id)
         {
             var order = _orderRepository.GetById(id);
 
@@ -43,7 +43,7 @@ namespace VerdeBordo.API.Services
             return OrderViewModel.Map(order);
         }
 
-        public OrderViewModel Order(Guid id, AddOrderInputModel addOrderInputModel)
+        public OrderViewModel? Order(Guid id, AddOrderInputModel addOrderInputModel)
         {
             var customer = _customerRepository.GetById(id);
 

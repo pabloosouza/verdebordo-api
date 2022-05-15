@@ -1,5 +1,5 @@
-﻿using VerdeBordo.API.Models;
-using VerdeBordo.API.Services.Responses;
+﻿using VerdeBordo.API.InputModels;
+using VerdeBordo.API.Services.ViewModels;
 
 namespace VerdeBordo.API.Services.Interfaces
 {
@@ -8,6 +8,8 @@ namespace VerdeBordo.API.Services.Interfaces
         CustomerViewModel Add(AddCustomerInputModel model);
         bool Delete(Guid id);
         List<GetAllCustomersViewModel> GetAll();
-        CustomerViewModel GetById(Guid id);
+        CustomerViewModel? GetById(Guid id);
+        AddressViewModel? AddAddress(Guid id, AddAddressInputModel addAddressInputModel);
+        AddressViewModel? GetAddressById(Guid id);
     }
 }

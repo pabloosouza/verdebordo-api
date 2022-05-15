@@ -1,13 +1,30 @@
 ﻿using Bogus;
 using System;
-using VerdeBordo.API.Models;
-using VerdeBordo.API.Services.Responses;
+using VerdeBordo.API.InputModels;
+using VerdeBordo.API.Services.ViewModels;
+using VerdeBordo.Domain.Entities;
 using VerdeBordo.Domain.Entities.Enums;
 
 namespace VerdeBordo.API.Tests.Factory
 {
     public class OrderFactory
     {
+        #region Entities
+
+        public static Faker<Embroidery> Embroidery =>
+            new Faker<Embroidery>()
+            .CustomInstantiator(x =>
+            {
+                return new Embroidery(
+                    Guid.NewGuid(),
+                    x.Random.Int(1,10),
+                    x.Random.Float(1,10),
+                    PaymentMethod.PicPay
+                    );
+            });
+
+        #endregion
+
         #region Input Models
 
         public static Faker<AddOrderInputModel> AddOrderInputModel =>
@@ -32,7 +49,6 @@ namespace VerdeBordo.API.Tests.Factory
                 return new OrderViewModel
                 {
                     Id = Guid.NewGuid(),
-                    CustomerId = Guid.NewGuid(),
                     Size = x.Random.Int(1,10),
                     Price = x.Random.Float(1, 10),
                     PaidAmount = x.Random.Float(1, 10),

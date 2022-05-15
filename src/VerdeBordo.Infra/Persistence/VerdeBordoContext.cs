@@ -7,9 +7,9 @@ namespace VerdeBordo.Infra.Persistence
     {
         #region DbSets
 
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Embroidery> Orders { get; set; }
-        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Customer>? Customers { get; set; }
+        public DbSet<Embroidery>? Orders { get; set; }
+        public DbSet<Address>? Addresses { get; set; }
 
         #endregion
 

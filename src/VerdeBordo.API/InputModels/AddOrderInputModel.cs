@@ -1,6 +1,6 @@
 ﻿using VerdeBordo.Domain.Entities.Enums;
 
-namespace VerdeBordo.API.Models
+namespace VerdeBordo.API.InputModels
 {
     public record AddOrderInputModel(
         int Size,

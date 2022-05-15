@@ -9,11 +9,11 @@ using VerdeBordo.Infra.Persistence;
 
 #nullable disable
 
-namespace VerdeBordo.API.Migrations
+namespace VerdeBordo.Infra.Migrations
 {
     [DbContext(typeof(VerdeBordoContext))]
-    [Migration("20220514185504_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220515045236_NewMigrations")]
+    partial class NewMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,8 +30,11 @@ namespace VerdeBordo.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Complement")
+                    b.Property<string>("City")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Complement")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("CustomerId")
@@ -53,7 +56,7 @@ namespace VerdeBordo.API.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("VerdeBordo.Domain.Entities.Customer", b =>
@@ -87,7 +90,7 @@ namespace VerdeBordo.API.Migrations
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DeliveredIn")
+                    b.Property<DateTime?>("DeliveredIn")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("OrderedIn")
@@ -112,7 +115,7 @@ namespace VerdeBordo.API.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Embroidery");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("VerdeBordo.Domain.Entities.Address", b =>

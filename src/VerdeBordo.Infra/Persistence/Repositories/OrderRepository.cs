@@ -14,7 +14,7 @@ namespace VerdeBordo.Infra.Persistence.Repositories
 
         public void Add(Embroidery entity)
         {
-            _context.Orders.Add(entity);
+            _context.Orders?.Add(entity);
             _context.SaveChanges();
         }
 
@@ -25,12 +25,14 @@ namespace VerdeBordo.Infra.Persistence.Repositories
 
         public List<Embroidery> GetAll()
         {
+#pragma warning disable CS8604 // Possible null reference argument.
             return _context.Orders.ToList();
+#pragma warning restore CS8604 // Possible null reference argument.
         }
 
         public Embroidery? GetById(Guid id)
         {
-            return _context.Orders
+            return _context.Orders?
                     .SingleOrDefault(o => o.Id == id);
                 
         }

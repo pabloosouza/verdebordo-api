@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using VerdeBordo.API.Models;
+using VerdeBordo.API.InputModels;
 using VerdeBordo.API.Services.Interfaces;
+using VerdeBordo.API.Services.ViewModels;
 
 namespace VerdeBordo.API.Controllers
 {
@@ -67,6 +68,36 @@ namespace VerdeBordo.API.Controllers
             }
 
             return NoContent();
+        }
+
+        [HttpPost("{id}/address")]
+        public IActionResult AddAddress(Guid id, AddAddressInputModel addAddressInputModel)
+        {
+            var response = _customerService.AddAddress(id, addAddressInputModel);
+
+            if (response is null)
+            {
+                return NotFound("Cliente não encontrado.");
+            }
+
+            return CreatedAtAction(
+                "GetAddressById",
+                new { response.Id },
+                response
+                );
+        }
+
+        [HttpGet("address/{id}")]
+        public IActionResult GetAddressById(Guid id)
+        {
+            var response = _customerService.GetAddressById(id);
+
+            if (response is null)
+            {
+                return NotFound("Endereço não encontrado.");
+            }
+
+            return Ok(response);
         }
 
         #endregion

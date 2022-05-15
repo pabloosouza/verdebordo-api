@@ -1,8 +1,8 @@
 ﻿using Bogus;
 using System;
 using System.Collections.Generic;
-using VerdeBordo.API.Models;
-using VerdeBordo.API.Services.Responses;
+using VerdeBordo.API.InputModels;
+using VerdeBordo.API.Services.ViewModels;
 using VerdeBordo.Domain.Entities;
 
 namespace VerdeBordo.API.Tests.Factory
@@ -17,7 +17,7 @@ namespace VerdeBordo.API.Tests.Factory
             {
                 return new Customer(
                         x.Person.FullName.ToString(),
-                        x.Phone.ToString()
+                        x.Random.Word()
                     );
             });
 
@@ -31,7 +31,7 @@ namespace VerdeBordo.API.Tests.Factory
             {
                 return new AddCustomerInputModel(
                     x.Person.FirstName,
-                    x.Phone.ToString()
+                    x.Random.Word()
                     );
             });
 
@@ -44,13 +44,13 @@ namespace VerdeBordo.API.Tests.Factory
             .CustomInstantiator(x =>
             {
                 return new CustomerViewModel
-                {
-                    Id = Guid.NewGuid(),
-                    Name = x.Person.FullName,
-                    Contact = x.Phone.ToString(),
-                    Addresses = new List<Address>(),
-                    Orders = new List<Embroidery>()
-                };
+                (
+                    Guid.NewGuid(),
+                    x.Person.FullName,
+                    x.Random.Word(),
+                    AddressFactory.Address.Generate(3),
+                    OrderFactory.Embroidery.Generate(3)
+                );
             });
 
         #endregion

@@ -1,6 +1,6 @@
 ﻿using VerdeBordo.Domain.Entities;
 
-namespace VerdeBordo.API.Services.Responses
+namespace VerdeBordo.API.Services.ViewModels
 {
     public class CustomerViewModel
 
@@ -11,16 +11,25 @@ namespace VerdeBordo.API.Services.Responses
         public List<Address> Addresses { get; set; }
         public List<Embroidery> Orders { get;  set; }
 
+        public CustomerViewModel(Guid id, string name, string contact, List<Address> addresses, List<Embroidery> orders)
+        {
+            Id = id;
+            Name = name;
+            Contact = contact;
+            Addresses = addresses;
+            Orders = orders;
+        }
+
         public static CustomerViewModel Map(Customer customer)
         {
             return new CustomerViewModel
-            {
-                Id = customer.Id,
-                Name = customer.Name,
-                Contact = customer.Contact,
-                Addresses = customer.Addresses,
-                Orders = customer.Orders
-            };
+            (
+                customer.Id,
+                customer.Name,
+                customer.Contact,
+                customer.Addresses,
+                customer.Orders
+            );
         }
     }
 }

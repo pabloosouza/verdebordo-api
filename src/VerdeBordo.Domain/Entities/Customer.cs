@@ -33,6 +33,11 @@
             IsDeleted = true;
         }
 
+        public void AddAddress(Address address)
+        {
+            Addresses.Add(address);
+        }
+
         #endregion
 
     }

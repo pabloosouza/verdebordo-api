@@ -1,12 +1,12 @@
-﻿using VerdeBordo.API.Models;
-using VerdeBordo.API.Services.Responses;
+﻿using VerdeBordo.API.InputModels;
+using VerdeBordo.API.Services.ViewModels;
 
 namespace VerdeBordo.API.Services.Interfaces
 {
     public interface IOrderService
     {
         List<OrderViewModel> GetAll();
-        OrderViewModel GetById(Guid id);
-        OrderViewModel Order(Guid id, AddOrderInputModel addOrderInputModel);
+        OrderViewModel? GetById(Guid id);
+        OrderViewModel? Order(Guid id, AddOrderInputModel addOrderInputModel);
     }
 }
