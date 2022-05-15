@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using VerdeBordo.API.Services;
 using VerdeBordo.API.Services.Interfaces;
 using VerdeBordo.Infra.Persistence;
@@ -20,7 +21,24 @@ builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(o =>
+{
+    o.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "VerdeBordo.API",
+        Version = "v1",
+        Contact = new OpenApiContact
+        {
+            Name = "Pablo Souza",
+            Email = "oliveirasouzapablo@gmail.com",
+            Url = new Uri("https://github.com/pabloosouza")
+        }
+    });
+     
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, "VerdeBordo.API.xml");
+    o.IncludeXmlComments(xmlPath);
+});
 
 var app = builder.Build();
 

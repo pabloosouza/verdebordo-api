@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VerdeBordo.API.InputModels;
 using VerdeBordo.API.Services.Interfaces;
-using VerdeBordo.API.Services.ViewModels;
 
 namespace VerdeBordo.API.Controllers
 {
@@ -26,12 +25,24 @@ namespace VerdeBordo.API.Controllers
 
         #region Methods
 
+        /// <summary>
+        /// Lista todos os clientes cadastrados.
+        /// </summary>
+        /// <returns>Lista dos clientes cadastrados.</returns>
+        /// <response code="200">Lista de clientes cadastrados.</response>
         [HttpGet]
         public IActionResult GetAll()
         {
             return Ok(_customerService.GetAll());
         }
 
+        /// <summary>
+        /// Procura cliente por Id.
+        /// </summary>
+        /// <param name="id">Id do cliente.</param>
+        /// <returns>Cliente encontrado.</returns>
+        /// <response code="200">Cliente encontrado com sucesso.</response>
+        /// <response code="404">Cleinte não encontrado.</response>
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
@@ -45,6 +56,12 @@ namespace VerdeBordo.API.Controllers
             return Ok(customer);
         }
 
+        /// <summary>
+        /// Cadastra novo cliente.
+        /// </summary>
+        /// <param name="addCustomerInputModel">Dados do cliente.</param>
+        /// <returns>Cliente cadastrado.</returns>
+        /// <response code="201">Cliente cadastrado com sucesso.</response>
         [HttpPost]
         public IActionResult AddCustomer(AddCustomerInputModel addCustomerInputModel)
         {
@@ -57,6 +74,13 @@ namespace VerdeBordo.API.Controllers
                 );
         }
 
+        /// <summary>
+        /// Exclui cliente do banco de dados.
+        /// </summary>
+        /// <param name="id">Id do cliente.</param>
+        /// <returns></returns>
+        /// <response code="204">Cliente excluido com sucesso.</response>
+        /// <response code="404">Cliente não encontrado.</response>
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
@@ -70,6 +94,14 @@ namespace VerdeBordo.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Adiciona novo endereço para cliente.
+        /// </summary>
+        /// <param name="id">Id do cliente.</param>
+        /// <param name="addAddressInputModel">Dados do endereço.</param>
+        /// <returns>Endereço cadastrado.</returns>
+        /// <response code="201">Endereço cadastrado com sucesso.</response>
+        /// <response code="404">Cliente não encontrado.</response>
         [HttpPost("{id}/address")]
         public IActionResult AddAddress(Guid id, AddAddressInputModel addAddressInputModel)
         {
@@ -87,6 +119,13 @@ namespace VerdeBordo.API.Controllers
                 );
         }
 
+        /// <summary>
+        /// Lista endereço do cliente por Id.
+        /// </summary>
+        /// <param name="id">Id do endereço.</param>
+        /// <returns>Endereço do cliente.</returns>
+        /// <response code="200">Endereço encontrado com sucesso.</response>
+        /// <response code="404">Endereço não encontrado.</response>
         [HttpGet("address/{id}")]
         public IActionResult GetAddressById(Guid id)
         {
