@@ -37,13 +37,13 @@ namespace VerdeBordo.API.Tests.Factory
 
         #endregion
 
-        #region Responses
+        #region View Models
 
-        public static Faker<GetCustomerResponse> GetCustomerResponse =>
-            new Faker<GetCustomerResponse>()
+        public static Faker<CustomerViewModel> GetCustomerResponse =>
+            new Faker<CustomerViewModel>()
             .CustomInstantiator(x =>
             {
-                return new GetCustomerResponse
+                return new CustomerViewModel
                 {
                     Id = Guid.NewGuid(),
                     Name = x.Person.FullName,

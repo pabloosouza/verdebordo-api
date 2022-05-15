@@ -8,6 +8,8 @@ namespace VerdeBordo.Infra.Persistence
         #region DbSets
 
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Embroidery> Orders { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
         #endregion
 
@@ -36,6 +38,16 @@ namespace VerdeBordo.Infra.Persistence
                     .WithOne()
                     .HasForeignKey(a => a.CustomerId)
                     .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<Embroidery>(e =>
+            {
+                e.HasKey(e => e.Id);
+            });
+
+            modelBuilder.Entity<Address>(a =>
+            {
+                a.HasKey(e => e.Id);
             });
         }
 

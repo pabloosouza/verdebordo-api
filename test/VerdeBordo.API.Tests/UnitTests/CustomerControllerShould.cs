@@ -1,7 +1,9 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using System;
 using VerdeBordo.API.Controllers;
+using VerdeBordo.API.Models;
 using VerdeBordo.API.Services.Interfaces;
 using VerdeBordo.API.Services.Responses;
 using VerdeBordo.API.Tests.Factory;
@@ -16,8 +18,13 @@ namespace VerdeBordo.API.Tests
 
         private readonly Mock<ICustomerService> _customerService;
         private readonly CustomerController _customerController;
-        private readonly GetCustomerResponse customerReponse;
+
+        private readonly AddCustomerInputModel addCustomerInputModel;
+        private readonly CustomerViewModel customerReponse;
         private readonly Customer customer;
+        private readonly AddOrderInputModel addOrderInputModel;
+        private readonly OrderViewModel orderViewModel;
+        private readonly Embroidery embroidery;
 
         #endregion
 
@@ -28,8 +35,11 @@ namespace VerdeBordo.API.Tests
             _customerService = new Mock<ICustomerService>();
             _customerController = new CustomerController(_customerService.Object);
 
+            addCustomerInputModel = CustomerFactory.AddCustomerInputModel.Generate();
             customerReponse = CustomerFactory.GetCustomerResponse.Generate();
             customer = CustomerFactory.Customer.Generate();
+            orderViewModel = OrderFactory.OrderViewModel.Generate();
+            addOrderInputModel = OrderFactory.AddOrderInputModel.Generate(); 
         }
 
         #endregion
@@ -104,6 +114,23 @@ namespace VerdeBordo.API.Tests
             IActionResult result = _customerController.Delete(customer.Id);
 
             result.Should().BeOfType<NotFoundObjectResult>();
+        }
+
+        #endregion
+
+        #region Order
+
+        [Fact]
+        public void CreateOrder_WhenValidCustomerInformed()
+        {
+            var customerId = Guid.NewGuid();
+
+            _customerService.Setup(x => x.Order(customerId, addOrderInputModel))
+                .Returns(orderViewModel);
+
+            var result = _customerController.Order(customerId, addOrderInputModel);
+            
+            result.Should().BeOfType<CreatedAtActionResult>();
         }
 
         #endregion

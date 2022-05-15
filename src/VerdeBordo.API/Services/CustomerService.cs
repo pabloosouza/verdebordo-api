@@ -15,13 +15,13 @@ namespace VerdeBordo.API.Services
             _customerRepository = customerRepository;
         }
 
-        public GetCustomerResponse Add(AddCustomerInputModel model)
+        public CustomerViewModel Add(AddCustomerInputModel model)
         {
             var customer = new Customer(model.Name, model.Contact);
 
             _customerRepository.Add(customer);
 
-            return GetCustomerResponse.Map(customer);
+            return CustomerViewModel.Map(customer);
         }
 
         public bool Delete(Guid id)
@@ -40,24 +40,24 @@ namespace VerdeBordo.API.Services
             return true;
         }
 
-        public List<GetAllCustomerResponse> GetAll()
+        public List<GetAllCustomersViewModel> GetAll()
         {
             var customers = _customerRepository.GetAll();
 
-            var response = new List<GetAllCustomerResponse>();
+            var response = new List<GetAllCustomersViewModel>();
 
             foreach (var customer in customers)
             {
                 if (!customer.IsDeleted)
                 {
-                    response.Add(GetAllCustomerResponse.Map(customer));
+                    response.Add(GetAllCustomersViewModel.Map(customer));
                 }
             }
 
             return response;
         }
 
-        public GetCustomerResponse GetById(Guid id)
+        public CustomerViewModel GetById(Guid id)
         {
             var customer = GetCustomerById(id);
 
@@ -66,9 +66,30 @@ namespace VerdeBordo.API.Services
                 return null;
             }
 
-            var response = GetCustomerResponse.Map(customer);
+            var response = CustomerViewModel.Map(customer);
 
             return response;
+        }
+
+        public OrderViewModel Order(Guid id, AddOrderInputModel addOrderInputModel)
+        {
+            var customer = GetCustomerById(id);
+
+            if (customer is null)
+            {
+                return null;
+            }
+
+            var embroidery = new Embroidery(
+                id,
+                addOrderInputModel.Size,
+                addOrderInputModel.Price,
+                addOrderInputModel.PaymentMethod
+                );
+
+            _customerRepository.Order(embroidery);
+
+            return OrderViewModel.Map(embroidery);
         }
 
         private Customer? GetCustomerById(Guid id)

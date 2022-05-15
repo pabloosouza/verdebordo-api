@@ -2,7 +2,7 @@
 
 namespace VerdeBordo.API.Services.Responses
 {
-    public class GetCustomerResponse
+    public class CustomerViewModel
 
     {
         public Guid Id { get; set; }
@@ -11,9 +11,9 @@ namespace VerdeBordo.API.Services.Responses
         public List<Address> Addresses { get; set; }
         public List<Embroidery> Orders { get;  set; }
 
-        public static GetCustomerResponse Map(Customer customer)
+        public static CustomerViewModel Map(Customer customer)
         {
-            return new GetCustomerResponse
+            return new CustomerViewModel
             {
                 Id = customer.Id,
                 Name = customer.Name,

@@ -14,22 +14,22 @@ namespace VerdeBordo.Domain.Entities
         public PaymentMethod PaymentMethod { get; private set; }
         public OrderStatus Status { get; private set; }
         public DateTime OrderedIn { get; private set; }
-        public DateTime DeliveredIn { get; private set; }
+        public DateTime? DeliveredIn { get; private set; }
 
         #endregion
 
         #region Constructors
 
-        public Embroidery(Guid customerId, int size, float price, float paidAmount, PaymentMethod paymentMethod, OrderStatus status)
+        public Embroidery(Guid customerId, int size, float price, PaymentMethod paymentMethod)
         {
             Id = Guid.NewGuid();
             CustomerId = customerId;
             Size = size;
             Price = price;
-            PaidAmount = paidAmount;
             PaymentMethod = paymentMethod;
-            Status = status;
+            Status = OrderStatus.Quotation;
             OrderedIn = DateTime.Now;
+            DeliveredIn = null;
         }
 
         #endregion

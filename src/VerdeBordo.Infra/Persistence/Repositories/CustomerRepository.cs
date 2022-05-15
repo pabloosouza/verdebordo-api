@@ -50,6 +50,14 @@ namespace VerdeBordo.Infra.Persistence.Repository
 
         }
 
+        public void Order(Embroidery embroidery)
+        {
+
+            _context.Orders.Add(embroidery);
+
+            _context.SaveChanges();
+        }
+
         #endregion
 
     }

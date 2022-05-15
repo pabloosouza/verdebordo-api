@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VerdeBordo.Infra.Persistence;
 
@@ -11,9 +12,10 @@ using VerdeBordo.Infra.Persistence;
 namespace VerdeBordo.API.Migrations
 {
     [DbContext(typeof(VerdeBordoContext))]
-    partial class VerdeBordoContextModelSnapshot : ModelSnapshot
+    [Migration("20220515001340_AddressOrder")]
+    partial class AddressOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,7 +87,7 @@ namespace VerdeBordo.API.Migrations
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("DeliveredIn")
+                    b.Property<DateTime>("DeliveredIn")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("OrderedIn")
