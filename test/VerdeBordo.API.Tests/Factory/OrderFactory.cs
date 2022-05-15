@@ -51,7 +51,7 @@ namespace VerdeBordo.API.Tests.Factory
                     Id = Guid.NewGuid(),
                     Size = x.Random.Int(1,10),
                     Price = x.Random.Float(1, 10),
-                    PaidAmount = x.Random.Float(1, 10),
+                    AmountToPay = x.Random.Float(1, 10),
                     PaymentMethodDescription = x.Random.Word(),
                     StatusDescription = x.Random.Word(),
                     OrderedIn = x.Date.Past(),

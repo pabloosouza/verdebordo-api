@@ -48,8 +48,28 @@ namespace VerdeBordo.Domain.Entities
                 throw new Exception("Bordado já foi entregue.");
             }
 
+            if (Status == OrderStatus.Delivering)
+            {
+                DeliveredIn = DateTime.Now;
+            }
+
             Status++;
             StatusDescription = OrderStatusConst.GetDescription(Status);
+        }
+
+        public void Pay(float amount)
+        {
+            if (PaidAmount == Price)
+            {
+                throw new Exception("Valor total já foi pago.");
+            }
+            
+            if (amount + PaidAmount > Price)
+            {
+                throw new Exception("Valor informado maior do que valor total.");
+            }
+
+            PaidAmount += amount;
         }
 
         #endregion

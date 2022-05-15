@@ -68,5 +68,10 @@ namespace VerdeBordo.API.Services
         {
             _orderRepository.UpdateStatus(id);
         }
+
+        public void Pay(Guid id, float amount)
+        {
+            _orderRepository.Pay(id, amount);
+        }
     }
 }

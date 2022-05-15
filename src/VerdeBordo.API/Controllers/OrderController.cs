@@ -58,9 +58,24 @@ namespace VerdeBordo.API.Controllers
             {
                 _orderService.UpdateStatus(id);
             }
-            catch 
+            catch (Exception ex)
             {
-                return BadRequest("Bordado já foi entregue.");
+                return BadRequest(ex.Message);
+            }
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}/pay")]
+        public IActionResult Pay(Guid id, float amountToPay)
+        {
+            try
+            {
+                _orderService.Pay(id, amountToPay);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
             return NoContent();

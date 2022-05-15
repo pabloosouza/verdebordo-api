@@ -1,5 +1,4 @@
 ﻿using VerdeBordo.Domain.Entities;
-using VerdeBordo.Domain.Entities.Enums;
 
 namespace VerdeBordo.API.Services.ViewModels
 {
@@ -8,7 +7,7 @@ namespace VerdeBordo.API.Services.ViewModels
         public Guid Id { get; set; }
         public int Size { get; set; }
         public float Price { get; set; }
-        public float PaidAmount { get; set; }
+        public float AmountToPay { get; set; }
         public string? PaymentMethodDescription { get; set; }
         public string? StatusDescription { get; set; }
         public DateTime OrderedIn { get; set; }
@@ -21,7 +20,7 @@ namespace VerdeBordo.API.Services.ViewModels
                 Id = embroidery.Id,
                 Size = embroidery.Size,
                 Price = embroidery.Price,
-                PaidAmount = embroidery.PaidAmount,
+                AmountToPay = embroidery.Price - embroidery.PaidAmount,
                 PaymentMethodDescription = embroidery.PaymentMethodDescription,
                 StatusDescription = embroidery.StatusDescription,
                 OrderedIn = embroidery.OrderedIn,

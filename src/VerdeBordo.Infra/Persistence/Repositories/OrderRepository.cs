@@ -46,5 +46,15 @@ namespace VerdeBordo.Infra.Persistence.Repositories
 
             _context.SaveChanges();
         }
+
+        public void Pay(Guid id, float amount)
+        {
+            var order = _context.Orders?
+                    .SingleOrDefault(o => o.Id == id);
+
+            order?.Pay(amount);
+
+            _context.SaveChanges();
+        }
     }
 }
