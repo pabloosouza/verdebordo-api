@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VerdeBordo.Infra.Migrations
 {
-    public partial class NewMigrations : Migration
+    public partial class AddMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,10 +30,10 @@ namespace VerdeBordo.Infra.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Complement = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Complement = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,7 +56,9 @@ namespace VerdeBordo.Infra.Migrations
                     Price = table.Column<float>(type: "real", nullable: false),
                     PaidAmount = table.Column<float>(type: "real", nullable: false),
                     PaymentMethod = table.Column<int>(type: "int", nullable: false),
+                    PaymentMethodDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
+                    StatusDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrderedIn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeliveredIn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },

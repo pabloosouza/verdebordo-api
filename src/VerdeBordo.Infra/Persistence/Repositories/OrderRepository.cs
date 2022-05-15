@@ -36,5 +36,15 @@ namespace VerdeBordo.Infra.Persistence.Repositories
                     .SingleOrDefault(o => o.Id == id);
                 
         }
+
+        public void UpdateStatus(Guid id)
+        {
+            var order = _context.Orders?
+                    .SingleOrDefault(o => o.Id == id);
+
+            order?.UpdateStatus();
+
+            _context.SaveChanges();
+        }
     }
 }

@@ -9,8 +9,8 @@ namespace VerdeBordo.API.Services.ViewModels
         public int Size { get; set; }
         public float Price { get; set; }
         public float PaidAmount { get; set; }
-        public PaymentMethod PaymentMethod { get; set; }
-        public OrderStatus Status { get; set; }
+        public string? PaymentMethodDescription { get; set; }
+        public string? StatusDescription { get; set; }
         public DateTime OrderedIn { get; set; }
         public DateTime? DeliveredIn { get; set; }
 
@@ -22,8 +22,8 @@ namespace VerdeBordo.API.Services.ViewModels
                 Size = embroidery.Size,
                 Price = embroidery.Price,
                 PaidAmount = embroidery.PaidAmount,
-                PaymentMethod = embroidery.PaymentMethod,
-                Status = embroidery.Status,
+                PaymentMethodDescription = embroidery.PaymentMethodDescription,
+                StatusDescription = embroidery.StatusDescription,
                 OrderedIn = embroidery.OrderedIn,
                 DeliveredIn = embroidery.DeliveredIn
             };

@@ -100,6 +100,10 @@ namespace VerdeBordo.Infra.Migrations
                     b.Property<int>("PaymentMethod")
                         .HasColumnType("int");
 
+                    b.Property<string>("PaymentMethodDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
@@ -108,6 +112,10 @@ namespace VerdeBordo.Infra.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("StatusDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

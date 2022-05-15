@@ -8,5 +8,6 @@ namespace VerdeBordo.API.Services.Interfaces
         List<OrderViewModel> GetAll();
         OrderViewModel? GetById(Guid id);
         OrderViewModel? Order(Guid id, AddOrderInputModel addOrderInputModel);
+        void UpdateStatus(Guid id);
     }
 }

@@ -50,5 +50,20 @@ namespace VerdeBordo.API.Controllers
                 order
                 );
         }
+
+        [HttpPut("{id}/update-status")]
+        public IActionResult UpdateStatus(Guid id)
+        {
+            try
+            {
+                _orderService.UpdateStatus(id);
+            }
+            catch 
+            {
+                return BadRequest("Bordado já foi entregue.");
+            }
+
+            return NoContent();
+        }
     }
 }

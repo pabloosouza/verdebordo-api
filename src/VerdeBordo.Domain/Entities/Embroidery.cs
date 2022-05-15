@@ -1,4 +1,5 @@
-﻿using VerdeBordo.Domain.Entities.Enums;
+﻿using VerdeBordo.Domain.Entities.Consts;
+using VerdeBordo.Domain.Entities.Enums;
 
 namespace VerdeBordo.Domain.Entities
 {
@@ -12,7 +13,9 @@ namespace VerdeBordo.Domain.Entities
         public float Price { get; private set; }
         public float PaidAmount { get; private set; }
         public PaymentMethod PaymentMethod { get; private set; }
+        public string PaymentMethodDescription { get; private set; }
         public OrderStatus Status { get; private set; }
+        public string StatusDescription { get; private set; }
         public DateTime OrderedIn { get; private set; }
         public DateTime? DeliveredIn { get; private set; }
 
@@ -27,9 +30,26 @@ namespace VerdeBordo.Domain.Entities
             Size = size;
             Price = price;
             PaymentMethod = paymentMethod;
+            PaymentMethodDescription = PaymentMethodConst.GetDescription(PaymentMethod);
             Status = OrderStatus.Quotation;
+            StatusDescription = OrderStatusConst.GetDescription(Status);
             OrderedIn = DateTime.Now;
             DeliveredIn = null;
+        }
+
+        #endregion
+
+        #region Methods
+
+        public void UpdateStatus()
+        {
+            if (Status == OrderStatus.Delivered)
+            {
+                throw new Exception("Bordado já foi entregue.");
+            }
+
+            Status++;
+            StatusDescription = OrderStatusConst.GetDescription(Status);
         }
 
         #endregion

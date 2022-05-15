@@ -63,5 +63,10 @@ namespace VerdeBordo.API.Services
 
             return OrderViewModel.Map(embroidery);
         }
+
+        public void UpdateStatus(Guid id)
+        {
+            _orderRepository.UpdateStatus(id);
+        }
     }
 }

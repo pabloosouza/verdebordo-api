@@ -52,8 +52,8 @@ namespace VerdeBordo.API.Tests.Factory
                     Size = x.Random.Int(1,10),
                     Price = x.Random.Float(1, 10),
                     PaidAmount = x.Random.Float(1, 10),
-                    PaymentMethod = PaymentMethod.Bill,
-                    Status = OrderStatus.Quotation,
+                    PaymentMethodDescription = x.Random.Word(),
+                    StatusDescription = x.Random.Word(),
                     OrderedIn = x.Date.Past(),
                     DeliveredIn = x.Date.Future()
                 };

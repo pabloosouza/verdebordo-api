@@ -12,8 +12,8 @@ using VerdeBordo.Infra.Persistence;
 namespace VerdeBordo.Infra.Migrations
 {
     [DbContext(typeof(VerdeBordoContext))]
-    [Migration("20220515045236_NewMigrations")]
-    partial class NewMigrations
+    [Migration("20220515063607_AddMigration")]
+    partial class AddMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -102,6 +102,10 @@ namespace VerdeBordo.Infra.Migrations
                     b.Property<int>("PaymentMethod")
                         .HasColumnType("int");
 
+                    b.Property<string>("PaymentMethodDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
@@ -110,6 +114,10 @@ namespace VerdeBordo.Infra.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("StatusDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
