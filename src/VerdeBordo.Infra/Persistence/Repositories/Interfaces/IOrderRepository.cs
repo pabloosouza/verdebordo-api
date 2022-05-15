@@ -2,8 +2,7 @@
 
 namespace VerdeBordo.Infra.Persistence.Repositories.Interfaces
 {
-    public interface ICustomerRepository : IBaseRepository<Customer>
+    public interface IOrderRepository : IBaseRepository<Embroidery>
     {
-        void Order(Embroidery embroidery);
     }
 }

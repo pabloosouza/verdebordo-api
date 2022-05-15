@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VerdeBordo.Domain.Entities;
-using VerdeBordo.Infra.Persistence.Repository.Interfaces;
+using VerdeBordo.Infra.Persistence.Repositories.Interfaces;
 
-namespace VerdeBordo.Infra.Persistence.Repository
+namespace VerdeBordo.Infra.Persistence.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {

@@ -2,7 +2,7 @@
 using VerdeBordo.API.Services.Interfaces;
 using VerdeBordo.API.Services.Responses;
 using VerdeBordo.Domain.Entities;
-using VerdeBordo.Infra.Persistence.Repository.Interfaces;
+using VerdeBordo.Infra.Persistence.Repositories.Interfaces;
 
 namespace VerdeBordo.API.Services
 {
@@ -69,27 +69,6 @@ namespace VerdeBordo.API.Services
             var response = CustomerViewModel.Map(customer);
 
             return response;
-        }
-
-        public OrderViewModel Order(Guid id, AddOrderInputModel addOrderInputModel)
-        {
-            var customer = GetCustomerById(id);
-
-            if (customer is null)
-            {
-                return null;
-            }
-
-            var embroidery = new Embroidery(
-                id,
-                addOrderInputModel.Size,
-                addOrderInputModel.Price,
-                addOrderInputModel.PaymentMethod
-                );
-
-            _customerRepository.Order(embroidery);
-
-            return OrderViewModel.Map(embroidery);
         }
 
         private Customer? GetCustomerById(Guid id)

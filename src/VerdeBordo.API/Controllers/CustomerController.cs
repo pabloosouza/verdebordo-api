@@ -69,23 +69,6 @@ namespace VerdeBordo.API.Controllers
             return NoContent();
         }
 
-        [HttpPost("{id}/order")]
-        public IActionResult Order(Guid id, AddOrderInputModel addOrderInputModel)
-        { 
-            var order = _customerService.Order(id, addOrderInputModel);
-
-            if (order is null)
-            {
-                return NotFound("Cliente não encontrado.");
-            }
-
-            return CreatedAtAction(
-                "GetOrderById",
-                order.Id,
-                order
-                );
-        }
-
         #endregion
 
     }

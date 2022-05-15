@@ -9,6 +9,5 @@ namespace VerdeBordo.API.Services.Interfaces
         bool Delete(Guid id);
         List<GetAllCustomersViewModel> GetAll();
         CustomerViewModel GetById(Guid id);
-        OrderViewModel Order(Guid id, AddOrderInputModel model);
     }
 }
