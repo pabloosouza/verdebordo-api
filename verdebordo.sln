@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CDFFCDFC-5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VerdeBordo.API.Tests", "test\VerdeBordo.API.Tests\VerdeBordo.API.Tests.csproj", "{90DAA332-5C77-4ADD-A204-76D650DA1DC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerdeBordo.Domain", "src\VerdeBordo.Domain\VerdeBordo.Domain.csproj", "{DE136EB5-F597-4528-A1AD-DBE1A619FF82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VerdeBordo.Domain", "src\VerdeBordo.Domain\VerdeBordo.Domain.csproj", "{DE136EB5-F597-4528-A1AD-DBE1A619FF82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerdeBordo.Infra", "src\VerdeBordo.Infra\VerdeBordo.Infra.csproj", "{AC9DED53-E96C-446A-B020-06D6FBC7CFFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VerdeBordo.Infra", "src\VerdeBordo.Infra\VerdeBordo.Infra.csproj", "{AC9DED53-E96C-446A-B020-06D6FBC7CFFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
